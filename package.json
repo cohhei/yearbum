@@ -1,0 +1,19 @@
+{
+  "name": "react-sandbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify ./src/app.jsx -t babelify --outfile ./dist/app.js"
+  },
+  "author": "kohei",
+  "license": "ISC",
+  "devDependencies": {
+    "babelify": "^6.4.0",
+    "browserify": "^13.1.1",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-masonry-component": "^4.4.0"
+  }
+}
