@@ -1,0 +1,7 @@
+img.image {
+  /*object-fit: contain;*/
+  max-width: 100%;
+}
+.photo {
+  max-width: 33%;
+}

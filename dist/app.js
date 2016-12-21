@@ -2603,12 +2603,18 @@ module.exports = hyphenateStyleName;
  * will remain to ensure logic does not differ in production.
  */
 
-function invariant(condition, format, a, b, c, d, e, f) {
-  if (process.env.NODE_ENV !== 'production') {
+var validateFormat = function validateFormat(format) {};
+
+if (process.env.NODE_ENV !== 'production') {
+  validateFormat = function validateFormat(format) {
     if (format === undefined) {
       throw new Error('invariant requires an error message argument');
     }
-  }
+  };
+}
+
+function invariant(condition, format, a, b, c, d, e, f) {
+  validateFormat(format);
 
   if (!condition) {
     var error;
@@ -27560,26 +27566,30 @@ var _reactMasonryComponent = require('react-masonry-component');
 
 var _reactMasonryComponent2 = _interopRequireDefault(_reactMasonryComponent);
 
-function Photo(props) {
-  return _react2['default'].createElement('img', { className: 'photo', src: props.url });
-};
-Photo.propTypes = {
-  url: _react2['default'].PropTypes.string.isRequired
-};
-
-function PhotoList(props) {
-  var list = props.urls.map(function (url) {
-    return _react2['default'].createElement(Photo, { url: url });
-  });
-  console.log(list);
+function Description(props) {
   return _react2['default'].createElement(
-    'div',
+    'p',
     null,
-    list
+    'This is a photo.'
   );
 };
-PhotoList.propTypes = {
-  urls: _react2['default'].PropTypes.array.isRequired
+
+function Photo(props) {
+  return _react2['default'].createElement(
+    'div',
+    { className: 'photo' },
+    _react2['default'].createElement('img', { className: 'image', src: props.src }),
+    _react2['default'].createElement(
+      'h2',
+      { className: 'photo-title' },
+      props.title
+    ),
+    _react2['default'].createElement(Description, null)
+  );
+};
+Photo.propTypes = {
+  src: _react2['default'].PropTypes.string.isRequired,
+  title: _react2['default'].PropTypes.string.isRequired
 };
 
 var PhotoTiles = (function (_React$Component) {
@@ -27595,20 +27605,15 @@ var PhotoTiles = (function (_React$Component) {
     key: 'render',
     value: function render() {
       var options = {
-        itemSelector: '.photo',
-        columnWidth: 180
+        itemSelector: '.photo'
       };
       var list = this.props.urls.map(function (url, i) {
-        return _react2['default'].createElement('img', { key: i, src: url, width: '120' });
+        return _react2['default'].createElement(Photo, { key: i, src: url, title: url });
       });
       return _react2['default'].createElement(
-        'div',
-        { id: 'tile' },
-        _react2['default'].createElement(
-          _reactMasonryComponent2['default'],
-          { options: options },
-          list
-        )
+        _reactMasonryComponent2['default'],
+        { options: options },
+        list
       );
     }
   }]);
@@ -27620,7 +27625,7 @@ PhotoTiles.propTypes = {
   urls: _react2['default'].PropTypes.array.isRequired
 };
 
-var urls = ['img.jpg', 'img.jpg', 'img.jpg', 'img.jpg', 'img.jpg', 'img.jpg'];
+var urls = ['img1.jpg', 'img2.jpg', 'img2.jpg', 'img1.jpg', 'img2.jpg', 'img1.jpg'];
 _reactDom2['default'].render(_react2['default'].createElement(PhotoTiles, { urls: urls }), document.getElementById('container'));
 
 },{"react":202,"react-dom":50,"react-masonry-component":177}]},{},[203]);

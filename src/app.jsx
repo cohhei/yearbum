@@ -2,20 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Masonry from 'react-masonry-component';
 
-function Photo (props) {
-  return <img className="photo" src={props.url} />;
-};
-Photo.propTypes = {
-  url: React.PropTypes.string.isRequired
+function Description (props) {
+  return <p>This is a photo.</p>;
 };
 
-function PhotoList (props) {
-  const list = props.urls.map(url => {return <Photo url={url} />;});
-  console.log(list);
-  return <div>{list}</div>;
+function Photo (props) {
+  return <div className="photo">
+      <img className="image" src={props.src} />
+      <h2 className="photo-title">{props.title}</h2>
+      <Description ></Description>
+    </div>;
 };
-PhotoList.propTypes = {
-  urls: React.PropTypes.array.isRequired
+Photo.propTypes = {
+  src:    React.PropTypes.string.isRequired,
+  title:  React.PropTypes.string.isRequired
 };
 
 class PhotoTiles extends React.Component{
@@ -25,15 +25,12 @@ class PhotoTiles extends React.Component{
 
   render() {
     const options = {
-      itemSelector: '.photo',
-      columnWidth: 180,
+      itemSelector: '.photo'
     };
-    const list = this.props.urls.map((url, i) => {return <img key={i} src={url} width="120" />;});
-    return <div id="tile">
-      <Masonry options={options}>
+    const list = this.props.urls.map((url, i) => {return <Photo key={i} src={url} title={url} />;});
+    return <Masonry options={options}>
         {list}
-      </Masonry>
-    </div>;
+      </Masonry>;
   }
 }
 PhotoTiles.propTypes = {
@@ -41,12 +38,12 @@ PhotoTiles.propTypes = {
 };
 
 const urls = [
-  'img.jpg',
-  'img.jpg',
-  'img.jpg',
-  'img.jpg',
-  'img.jpg',
-  'img.jpg'
+  'img1.jpg',
+  'img2.jpg',
+  'img2.jpg',
+  'img1.jpg',
+  'img2.jpg',
+  'img1.jpg'
 ];
 ReactDOM.render(
   <PhotoTiles urls={urls}/>,
