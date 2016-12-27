@@ -43,10 +43,12 @@ function Tile (props) {
   return (
     <div className="tile">
       <Photo month={props.month} />
-      <h2 className="photo-title">
-        <TitleMonth month={props.month} />
-      </h2>
-      <Description ></Description>
+      <div className="tile-text">
+        <h2 className="photo-title">
+          <TitleMonth month={props.month} />
+        </h2>
+        <Description ></Description>
+      </div>
     </div>
   );
 };
