@@ -1,6 +1,6 @@
 {
   "name": "yearbum",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/app.js",
   "scripts": {
@@ -16,6 +16,7 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-masonry-component": "^4.4.0",
-    "react-moment": "0.0.3"
+    "react-moment": "0.0.3",
+    "react-textarea-autosize": "^4.0.5"
   }
 }

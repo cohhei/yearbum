@@ -5,37 +5,157 @@ body {
 h1, h2, p{
   font-family: 'Ubuntu', sans-serif;
 }
-img.photo {
-  max-width: 100%;
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+figure {
+  margin: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+figcaption {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .6);
+  transition: .3s;
+  opacity: 0;
+}
+figcaption p {
+  color: white;
+  margin-top: 50px;
+}
+figure:hover figcaption {
+  opacity: 1;
+  cursor: pointer;
 }
 .tiles {
-  margin: 15px;
+  position: relative;
+  top: 50px;
+  margin: 20px;
 }
 .tile {
-  max-width: calc(100% /3 - 30px);
-  margin: 15px;
+  max-width: calc(100% /3 - 40px);
+  margin: 20px;
   background-color: white;
 }
-.tile-text {
-  margin: 5px;
+@media screen and (max-width: 750px) and (min-width: 501px) {
+  .tile {
+    max-width: calc(100% /2 - 40px);
+  }
 }
-.header {
+@media screen and (max-width: 500px) {
+  .tile{ 
+    max-width: 100%;
+  }
+}
+
+.tile-text {
+  margin: 15px;
+}
+textarea, input {
+  resize: none;
+  font-size: 18px;
+  border: none;
+  background-color: transparent;
+}
+#header textarea:hover, input:hover {
+  background-color: rgba(0, 0, 0, .2);
+}
+.tile-text textarea:hover {
+  border: 1px solid lightgray;
+}
+.tile-text .description {
+  color: lightgray;
+  width: 100%;
+}
+#header {
+  top: 50px;
   height: 300px;
   position: relative;
 }
-.header-photo {
+#title {
+  text-align: center;
+  width: 80%;
+  margin: 20px;
+  font-size: 40px;
+  font-family: 'Ubuntu', sans-serif;
+  color: white;
+}
+#header .description {
+  text-align: center;
+  color: white;
+  width: 80%;
+}
+#header figure {
   position: relative;
   top: 0px;
-  object-fit: cover;
-  width: 100%;
-  max-height: 100%;
+  height: 300px;
   z-index: 0;
 }
-.header-text {
+#header-text {
   position: absolute;
   z-index: 1;
   width: 100%;
-  bottom: 0;
+  bottom: 10px;
   text-align: center;
   color: white;
+}
+
+/* header */
+header {
+  z-index: 10;
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  background-color: #333;
+  margin: 0px;
+}
+header a {
+  color: white;
+  text-decoration: none;
+}
+header a:hover {
+  color: lightgray;
+}
+header h1 {
+  position: absolute;
+  height: 100%;
+  top: 0.5em;
+  bottom: 0;
+  left: 100px;
+  margin: auto;
+}
+header i {
+  position: absolute;
+  top: 0.25em;
+  bottom: 0;
+  right: 150px;
+}
+
+/* footer */
+footer {
+  width: 90%;
+  height: 50px;
+  margin: 200px auto auto;
+  border-top: 1px solid lightgray;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 10pt;
+  color: gray;
+}
+footer li {
+  display: inline-block;
+  margin-left: 20px;
+}
+footer a {
+  color: gray;
+  text-decoration: none;
+}
+footer a:hover {
+  color: black;
 }

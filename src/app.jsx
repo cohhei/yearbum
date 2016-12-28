@@ -2,18 +2,88 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Masonry from 'react-masonry-component';
 import Moment from 'react-moment';
+import Textarea from 'react-textarea-autosize';
 
-function Description (props) {
-  return <p>This is a photo.</p>;
+class Description extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.initial
+    };
+
+    this.handleChangeText = this.handleChangeText.bind(this);
+  }
+
+  handleChangeText(e) {
+    this.setState({value: e.target.value});
+  }
+
+  render() {
+    return (
+      <Textarea className="description" value={this.state.value} onChange={this.handleChangeText}>
+        {this.props.initial}
+      </Textarea>
+    );
+  }
+};
+Description.propTypes = {
+  initial: React.PropTypes.string.isRequired
 };
 
-function Photo (props) {
-  const sample = `./samples/${props.month}/sample.JPG`;
-  return (
-    <div className="photo">
-      <img className="photo" src={sample} />
-    </div>
-  );
+class Title extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: props.initial
+    };
+
+    this.handleChangeText = this.handleChangeText.bind(this);
+  }
+
+  handleChangeText(e) {
+    this.setState({value: e.target.value});
+  }
+
+  render() {
+    return (
+      <input type="text" id="title" value={this.state.value} onChange={this.handleChangeText} defaultValue={this.props.initial} />
+    );
+  }
+};
+Title.propTypes = {
+  initial: React.PropTypes.string.isRequired
+};
+
+const createObjectURL = (window.URL || window.webkitURL).createObjectURL || window.createObjectURL;
+class Photo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      src: `./samples/${props.month}/sample.jpg`
+    };
+
+    this.handleChangeFile = this.handleChangeFile.bind(this);
+  }
+
+  handleChangeFile(e) {
+      const files = e.target.files;
+      const image_url = createObjectURL(files[0]);
+      this.setState({src: image_url});
+  }
+
+  render() {
+    return (
+      <div>
+        <label>
+          <figure className="photo">
+            <img className="photo" src={this.state.src} />
+            <figcaption><p>Select Another Photo...</p></figcaption>
+          </figure>
+          <input type="file" onChange={this.handleChangeFile} accept="image/*" style={{display: "none"}} />
+        </label>
+      </div>
+    );
+  }
 };
 Photo.propTypes = {
   month:  React.PropTypes.string.isRequired
@@ -21,11 +91,11 @@ Photo.propTypes = {
 
 function Header (props) {
   return (
-    <div className="header">
-      <img className="header-photo" src="./samples/header.jpg" />
-      <div className="header-text">
-        <h1 className="header-title">Yearbum</h1>
-        <Description className="header-description" />
+    <div id="header">
+      <Photo month="header" />
+      <div id="header-text">
+        <Title initial="Yearbum" />
+        <Description initial="This is my favorite photos in the year!" />
       </div>
     </div>
   );
@@ -47,7 +117,7 @@ function Tile (props) {
         <h2 className="photo-title">
           <TitleMonth month={props.month} />
         </h2>
-        <Description ></Description>
+        <Description initial="Add description about this photo!"></Description>
       </div>
     </div>
   );
