@@ -124,6 +124,9 @@ header {
   header { 
     height: 100px;
   }
+  #header, #header figure {
+    height: 600px;
+  }
 }
 header a {
   color: white;
