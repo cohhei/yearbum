@@ -2,6 +2,11 @@ body {
   margin: 0px;
   background-color: whitesmoke;
 }
+@media only screen and (max-device-width: 767px) {
+  body {
+    font-size: 200%;
+  }
+}
 h1, h2, p{
   font-family: 'Ubuntu', sans-serif;
 }
@@ -120,6 +125,11 @@ header {
   background-color: #333;
   margin: 0px;
 }
+@media only screen and (max-device-width: 767px) {
+  header { 
+    height: 100px;
+  }
+}
 header a {
   color: white;
   text-decoration: none;
@@ -140,6 +150,7 @@ header i {
   top: 0.25em;
   bottom: 0;
   right: 150px;
+  margin: auto;
 }
 
 /* footer */
