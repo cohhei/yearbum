@@ -55,7 +55,7 @@ figure:hover figcaption {
 }
 @media only screen and (max-device-width: 767px) {
   .tile{ 
-    width: calc(100% -40px);
+    width: calc(100% - 40px);
   }
 }
 
