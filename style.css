@@ -2,11 +2,6 @@ body {
   margin: 0px;
   background-color: whitesmoke;
 }
-@media only screen and (max-device-width: 767px) {
-  body {
-    font-size: 200%;
-  }
-}
 h1, h2, p{
   font-family: 'Ubuntu', sans-serif;
 }
@@ -173,4 +168,10 @@ footer a {
 }
 footer a:hover {
   color: black;
+}
+
+@media only screen and (max-device-width: 767px) {
+  body, #title, textarea {
+    font-size: 200%;
+  }
 }
