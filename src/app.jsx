@@ -46,7 +46,7 @@ class Title extends React.Component {
 
   render() {
     return (
-      <input type="text" id="title" value={this.state.value} onChange={this.handleChangeText} defaultValue={this.props.initial} />
+      <input type="text" id="title" value={this.state.value} onChange={this.handleChangeText} />
     );
   }
 };

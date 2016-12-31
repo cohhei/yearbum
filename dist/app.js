@@ -32592,7 +32592,7 @@ var Title = (function (_React$Component2) {
   }, {
     key: 'render',
     value: function render() {
-      return _react2['default'].createElement('input', { type: 'text', id: 'title', value: this.state.value, onChange: this.handleChangeText, defaultValue: this.props.initial });
+      return _react2['default'].createElement('input', { type: 'text', id: 'title', value: this.state.value, onChange: this.handleChangeText });
     }
   }]);
 
