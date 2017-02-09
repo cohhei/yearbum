@@ -3,7 +3,7 @@ Yearbum
 
 The source of [Yearbum](https://kohei-kimura.github.io/yearbum/), an album editor with your favorite photos in the year.
 
-![yearbum](./samples/yearbum.png)
+![yearbum](./samples/yearbum.jpg)
 
 ## Contribution
 
